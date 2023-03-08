@@ -47,7 +47,6 @@ def test_find_suitable_user():
         else:
             continue
 
-
     assert suiable_user == {"name": "Olga", "age": 45}
 
     # TODO найдите всех пользователей младше 20 лет
@@ -55,11 +54,10 @@ def test_find_suitable_user():
     def get_user_age(user):
         return user["age"]
 
-    suiable_users = {}
-
+    suiable_users = []
     for user in users:
         if get_user_age(user) <= 20:
-            suiable_user[(user)]
+            suiable_users.append(user)
         else:
             continue
 
@@ -72,7 +70,7 @@ def test_find_suitable_user():
 # Сделайте функцию, которая будет печатать
 # читаемое имя переданной ей функции и значений аргументов.
 # Вызовите ее внутри функций, описанных ниже
-# Подсказка: Имя функции можно получить с помощью func.__name__
+# Подсказка: Имя функции можно получить с помощью func.
 # Например, вызов следующей функции должен преобразовать имя функции
 # в более читаемый вариант (заменить символ подчеркивания на пробел,
 # сделать буквы заглавными (или первую букву), затем вывести значения всех аргументов этой функции:
@@ -80,11 +78,11 @@ def test_find_suitable_user():
 # "Open Browser [Chrome]"
 
 
+
 def test_readable_function():
     open_browser(browser_name="Chrome")
     go_to_companyname_homepage(page_url="https://companyname.com")
     find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
-
 
 def open_browser(browser_name):
     actual_result = None
@@ -97,5 +95,5 @@ def go_to_companyname_homepage(page_url):
 
 
 def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = None
+    actual_result = x for a in  func.__name__
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
