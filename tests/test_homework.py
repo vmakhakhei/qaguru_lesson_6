@@ -1,6 +1,5 @@
 from datetime import time
 
-
 def test_dark_theme():
     """
     Протестируйте правильность переключения темной темы на сайте
@@ -75,9 +74,9 @@ def test_readable_function():
     find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
 
 
-def decode(name_func, **kwargs):
-    x = name_func.__name__.replace('_', ' ').title()
-    return f'{x} {kwargs}'
+def decode(name_func, *args):
+    formatted_args = ', '.join(str(arg).replace("'", "") for arg in args)
+    return f"{name_func.__name__.replace('_', ' ').title()} [{formatted_args}]"
 
 
 def open_browser(browser_name):
