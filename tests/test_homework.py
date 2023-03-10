@@ -42,12 +42,7 @@ def test_find_suitable_user():
     def get_user_name(user):
         return user['name']
 
-    suiable_user = []
-    for user in users:
-        if get_user_name(user) == 'Olga':
-            suiable_user = user
-        else:
-            continue
+    suiable_user = [user for user in users if get_user_name(user) == 'Olga'].pop()
 
     assert suiable_user == {"name": "Olga", "age": 45}
 
@@ -56,12 +51,7 @@ def test_find_suitable_user():
     def get_user_age(user):
         return user["age"]
 
-    suiable_users = []
-    for user in users:
-        if get_user_age(user) <= 20:
-            suiable_users.append(user)
-        else:
-            continue
+    suiable_users = [user for user in users if get_user_age(user) <= 20]
 
     assert suiable_users == [
         {"name": "Stanislav", "age": 15},
@@ -85,17 +75,21 @@ def test_readable_function():
     find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
 
 
+def decode(name_func, **kwargs):
+    x = name_func.__name__.replace('_', ' ').title()
+    return f'{x} {kwargs}'
+
+
 def open_browser(browser_name):
-    actual_result = open_browser.__name__.replace('_', ' ').title() + f' [{browser_name}]'
+    actual_result = decode(open_browser, browser_name)
     assert actual_result == "Open Browser [Chrome]"
 
 
 def go_to_companyname_homepage(page_url):
-    actual_result = go_to_companyname_homepage.__name__.replace('_', ' ').title() + f' [{page_url}]'
+    actual_result = decode(go_to_companyname_homepage, page_url)
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
 
 
 def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = find_registration_button_on_login_page.__name__
-    actual_result = actual_result.replace('_', ' ').title() + f" [{page_url}, {button_text}]"
+    actual_result = decode(find_registration_button_on_login_page, page_url, button_text)
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
