@@ -1,5 +1,6 @@
 from datetime import time
 
+
 def test_dark_theme():
     """
     Протестируйте правильность переключения темной темы на сайте
@@ -7,20 +8,24 @@ def test_dark_theme():
     # 1_____________________
     current_time = time(hour=23)
     # TODO переключите темную тему в зависимости от времени суток (с 22 до 6 часов утра - ночь)
-    if time(hour=22) <= current_time >= time(hour=6):
+    if current_time.hour >= 22 or current_time.hour <= 6:
         is_dark_theme = True
     else:
         is_dark_theme = False
+
     assert is_dark_theme is True
+
     # 2__________________
-    current_time = time(hour=16)
-    dark_theme_enabled = True
     # TODO переключите темную тему в зависимости от времени суток,
     #  но учтите что темная тема может быть включена вручную
-    if time(hour=22) <= current_time >= time(hour=6) or dark_theme_enabled:
+    current_time = time(hour=16)
+    dark_theme_enabled = True
+
+    if current_time.hour >= 22 or current_time.hour <= 6 or dark_theme_enabled:
         is_dark_theme = True
     else:
         is_dark_theme = False
+
     assert is_dark_theme is True
 
 
@@ -75,7 +80,7 @@ def test_readable_function():
 
 
 def decode(name_func, *args):
-    formatted_args = ', '.join(str(arg).replace("'", "") for arg in args)
+    formatted_args = ', '.join(map(str, args)).replace("'", "")
     return f"{name_func.__name__.replace('_', ' ').title()} [{formatted_args}]"
 
 
