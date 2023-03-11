@@ -80,7 +80,7 @@ def test_readable_function():
 
 
 def decode(name_func, *args):
-    formatted_args = ', '.join(map(str, args)).replace("'", "")
+    formatted_args = ', '.join(args)
     return f"{name_func.__name__.replace('_', ' ').title()} [{formatted_args}]"
 
 
